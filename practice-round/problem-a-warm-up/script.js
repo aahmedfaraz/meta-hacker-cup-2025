@@ -23,7 +23,7 @@ const reachTarget = (current, target) => {
     let swapCount = 0;
     let swapPairs = [];
     let possible = true;
-    
+
     const initTempObj = current.reduce((acc, temp, idx) => {
         acc[temp] = idx;
         return acc;
