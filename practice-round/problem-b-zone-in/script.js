@@ -33,12 +33,23 @@ while (currentTestCase <= testCases) {
         for (let j = 0; j < room[i].length; j++) {
             // If current zone is an object, eliminate it and its surrounding zones
             if (room[i][j] === '#') {
-                room[i][j] = 0;
                 for (let step = 1; step <= s; step++) {
-                    if (i + step <= room.length - 1 && room[i + step][j] !== '#') room[i + step][j] = room[i + step][j] === 0 ? 0 : 1;
+                    // Up
                     if (i - step >= 0 && room[i - step][j] !== '#') room[i - step][j] = room[i - step][j] === 0 ? 0 : 1;
-                    if (j + step <= room[i].length - 1 && room[i][j + step] !== '#') room[i][j + step] = room[i][j + step] === 0 ? 0 : 1;
+                    // Down
+                    if (i + step <= room.length - 1 && room[i + step][j] !== '#') room[i + step][j] = room[i + step][j] === 0 ? 0 : 1;
+                    // Left
                     if (j - step >= 0 && room[i][j - step] !== '#') room[i][j - step] = room[i][j - step] === 0 ? 0 : 1;
+                    // Right
+                    if (j + step <= room[i].length - 1 && room[i][j + step] !== '#') room[i][j + step] = room[i][j + step] === 0 ? 0 : 1;
+                    // // Up-Left
+                    // if (i - step >= 0 && j - step >= 0 && room[i - step][j - step] !== '#') room[i - step][j - step] = room[i - step][j - step] === 0 ? 0 : 1;
+                    // // Up-Right
+                    // if (i - step >= 0 && j + step <= room[i].length - 1 && room[i - step][j + step] !== '#') room[i - step][j + step] = room[i - step][j + step] === 0 ? 0 : 1;
+                    // // Down-Left
+                    // if (i + step <= room.length - 1 && j - step >= 0 && room[i + step][j - step] !== '#') room[i + step][j - step] = room[i + step][j - step] === 0 ? 0 : 1;
+                    // // Down-Right
+                    // if (i + step <= room.length - 1 && j + step <= room[i].length - 1 && room[i + step][j + step] !== '#') room[i + step][j + step] = room[i + step][j + step] === 0 ? 0 : 1;
                 }
             }
         }
@@ -99,6 +110,7 @@ while (currentTestCase <= testCases) {
     
     // Log the modified room for debugging
     console.log(`\nRoom # ${currentTestCase}:`);
+    console.log('S=', s);
     room.forEach(row => console.log(row.join(' ')));
     // console.log('Groups of contiguous safe zones:', groups);
     console.log(`Size of largest group of contiguous safe zones:`, groupWithLargestSize.length);
